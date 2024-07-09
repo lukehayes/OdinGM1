@@ -4,6 +4,8 @@ import rl "vendor:raylib"
 import "engine"
 import "core:fmt"
 import "core:mem"
+import "engine/player"
+import "game"
 
 
 main :: proc()
@@ -42,12 +44,19 @@ main :: proc()
 
     // --------- End memory reporting.
 
-    engine := engine.init(320 * 8, 180 * 8, "Game")
+    engine := engine.init(320 * 4, 180 * 4, "Game")
+
+    b1 := game.create_ball({200,400})
+    pad1 := game.create_paddle({300,680})
+
+
+    fmt.println(b1.dx, b1.dy)
 
     for (!rl.WindowShouldClose())
     {
         rl.BeginDrawing()
-            rl.ClearBackground(rl.GRAY)
+            rl.ClearBackground(rl.BLACK)
+            game.draw_paddle(pad1)
         rl.EndDrawing()
     }
 
